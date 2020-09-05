@@ -1,0 +1,32 @@
+{
+    "name": "cljamal/raysystem",
+    "description": "Laravel admin project",
+    "type": "library",
+    "keywords": ["laravel-admin", "laravel dashboard", "laravel", "raysystem"],
+    "homepage": "https://github.com/cljamal/la-ckeditor4.git",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Jama Sultanov",
+            "email": "cl.jamal@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CLJAMAL\\RaySystem\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CLJAMAL\\RaySystem\\RaySystemServiceProvider"
+            ]
+        }
+    }
+}
