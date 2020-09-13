@@ -1,0 +1,8 @@
+<?php
+namespace App\Ray\Modules\Base\Models;
+
+use CLJAMAL\RaySystem\Models\CoreModel;
+
+class BaseModel extends CoreModel
+{
+}

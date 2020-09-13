@@ -1,5 +1,9 @@
 <?php
 
 return [
-    'basedir' => app_path('Ray')
+    'basedir' => app_path('Ray'),
+    'routes' => [
+        'middleware' => 'ray',
+        'admin-prefix' => 'admin',
+    ]
 ];

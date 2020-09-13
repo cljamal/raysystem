@@ -1,0 +1,8 @@
+<?php
+namespace App\Ray\Modules\Base\Controllers;
+
+use CLJAMAL\RaySystem\Controllers\CoreController;
+
+class BaseController extends CoreController
+{
+}

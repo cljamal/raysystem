@@ -3,6 +3,8 @@
 namespace CLJAMAL\RaySystem\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class InstallCommand extends Command{
 
@@ -44,34 +46,64 @@ class InstallCommand extends Command{
      */
     protected function createMainDir()
     {
-        $this->directory = config('ray.directory');
+        $this->makeDir(['Modules/Base/Controllers', 'Modules/Base/Models']);
+        $this->makeFile('boot.php', __DIR__ . '/../base_stubs/boot.stub');
+        $this->makeFile('Modules/Base/Controllers/BaseController.php', __DIR__ . '/../base_stubs/BaseController.stub');
+        $this->makeFile('Modules/Base/Models/BaseModel.php', __DIR__ . '/../base_stubs/BaseModel.stub');
 
-        if (is_dir($this->directory)) {
-            $this->line("<error>{$this->directory} directory already exists !</error> ");
-
-            return;
-        }
-
-        $this->makeDir('/');
-        $this->line('<info>RaySystem directory was created:</info> '.str_replace(base_path(), '', $this->directory) );
-
-        $this->makeDir('Controllers');
-
-        $this->createHomeController();
-        $this->createAuthController();
-        $this->createExampleController();
-
-        $this->createBootstrapFile();
-        $this->createRoutesFile();
     }
 
     /**
      * Make new directory.
      *
-     * @param string $path
+     * @param string $paths
+     * @return string
      */
-    protected function makeDir($path = '')
+    protected function makeDir( $paths = '' )
     {
-        $this->laravel['files']->makeDirectory("{$this->directory}/$path", 0755, true, true);
+        if ( !is_array($paths) )
+            $paths = [ $paths ];
+
+        foreach ($paths as $path)
+        {
+            if ( is_dir( config('ray.basedir') . DIRECTORY_SEPARATOR .$path ) ){
+                $this->line("<error>".config('ray.basedir') . DIRECTORY_SEPARATOR .$path." directory already exists !</error> ");
+                continue;
+            }
+
+            $paths_exploded = explode('/', $path);
+            $current_path = null;
+
+            foreach ($paths_exploded as $path)
+            {
+                $current_path = $current_path . '/' .$path;
+                if ( !is_dir( config('ray.basedir') . DIRECTORY_SEPARATOR .$current_path ) ){
+                    $this->laravel['files']->makeDirectory( config('ray.basedir') . DIRECTORY_SEPARATOR . $current_path, 0755, true, true);
+                    $this->info(config('ray.basedir') . DIRECTORY_SEPARATOR . $current_path . ' directory was created');
+                }
+            }
+        }
+        return config('ray.basedir') . DIRECTORY_SEPARATOR .$path;
+    }
+
+    /**
+     * Making a file
+     *
+     * @param $file_path
+     * @param $stub
+     * @return string|void
+     */
+    protected function makeFile( $file_path, $stub ){
+
+        if ( is_file( config('ray.basedir') . DIRECTORY_SEPARATOR . $file_path ) ){
+            $this->line("<error>". config('ray.basedir') . DIRECTORY_SEPARATOR . $file_path." file already exists !</error> ");
+            return;
+        }
+
+        $content = File::get($stub);
+        $this->laravel['files']->put( config('ray.basedir') . DIRECTORY_SEPARATOR . $file_path, $content );
+        $this->info(config('ray.basedir') . DIRECTORY_SEPARATOR . $file_path . ' file was created');
+        return config('ray.basedir') . DIRECTORY_SEPARATOR . $file_path;
+
     }
 }
