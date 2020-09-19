@@ -5,5 +5,6 @@ return [
     'routes' => [
         'middleware' => 'ray',
         'admin-prefix' => 'admin',
+        'root-name' => 'ray',
     ]
 ];
