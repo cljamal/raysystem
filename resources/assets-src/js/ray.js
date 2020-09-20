@@ -1,3 +1,2 @@
-window.$ = window.jquery = require('jquery');
-require('bootstrap');
-require('./vue/app');
+require('./init-components');
+require('./common');
