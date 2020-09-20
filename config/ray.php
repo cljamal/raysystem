@@ -6,5 +6,8 @@ return [
         'middleware' => 'ray',
         'admin-prefix' => 'admin',
         'root-name' => 'ray',
+    ],
+    'admin' => [
+        'template' => 'default'
     ]
 ];

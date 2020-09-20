@@ -5,6 +5,7 @@ use CLJAMAL\RaySystem\Console\InstallCommand;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class RaySystemServiceProvider extends ServiceProvider{
 
@@ -27,14 +28,35 @@ class RaySystemServiceProvider extends ServiceProvider{
         $this->mergeConfigFrom( __DIR__.'/../config/ray.php', 'ray' );
     }
 
+    public function boot()
+    {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ray');
+        $this->compatibleBlade();
+    }
+
+
     public function register()
     {
         $this->commands( $this->commands );
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'ray');
         $this->registerConfig();
         $this->registerRouteMiddleware();
         $this->registerRoutes();
     }
+
+    /**
+     * Remove default feature of double encoding enable in laravel 5.6 or later.
+     *
+     * @return void
+     */
+    protected function compatibleBlade()
+    {
+        $reflectionClass = new \ReflectionClass('\Illuminate\View\Compilers\BladeCompiler');
+
+        if ($reflectionClass->hasMethod('withoutDoubleEncoding')) {
+            Blade::withoutDoubleEncoding();
+        }
+    }
+
 
     /**
      * Register the default routes.
