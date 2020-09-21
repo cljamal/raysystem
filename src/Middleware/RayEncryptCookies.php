@@ -2,7 +2,7 @@
 namespace CLJAMAL\RaySystem\Middleware;
 
 
-class Ray
+class RayEncryptCookies
 {
     /**
      * Handle an incoming request.
@@ -14,14 +14,6 @@ class Ray
      */
     public function handle($request, \Closure $next, $guard = null)
     {
-        $path = '/'.trim(config('ray.routes.admin-prefix'), '/');
-
-        config(['session.path' => $path]);
-
-        if ($domain = config('ray.routes.domain')) {
-            config(['session.domain' => $domain]);
-        }
-
         return $next($request);
     }
 }

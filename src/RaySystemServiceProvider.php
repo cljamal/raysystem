@@ -14,7 +14,7 @@ class RaySystemServiceProvider extends ServiceProvider{
     ];
 
     protected $routeMiddleware = [
-        'ray.auth'       => Middleware\Ray::class,
+        'ray.auth' => Middleware\Ray::class,
     ];
 
     protected $middlewareGroups = [
@@ -31,6 +31,7 @@ class RaySystemServiceProvider extends ServiceProvider{
     public function boot()
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'ray');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'ray');
         $this->compatibleBlade();
     }
 
@@ -71,6 +72,8 @@ class RaySystemServiceProvider extends ServiceProvider{
             ->as( config('ray.routes.root-name') . '.' )
             ->group(function (Router $route){
             $route->get('/', 'AuthController@loginPage')->name('loginPage');
+            $route->get('/auth/login',  '\\' . config('ray.auth.controller') . '@loginPage' )->name('loginPage');
+            $route->post('/auth/login', '\\' . config('ray.auth.controller') . '@postLogin' )->name('postLogin');
         });
     }
 

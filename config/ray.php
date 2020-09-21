@@ -1,13 +1,42 @@
 <?php
 
+use App\Ray\Modules\Base\Controllers\AuthController;
+
+
 return [
     'basedir' => app_path('Ray'),
     'routes' => [
-        'middleware' => 'ray',
+        'middleware' =>['ray'],
         'admin-prefix' => 'admin',
         'root-name' => 'ray',
     ],
     'admin' => [
-        'template' => 'default'
-    ]
+        'template' => 'default',
+        'login-logo' => asset('ray/img/logo.png')
+    ],
+    'auth' => [
+        'controller' => AuthController::class,
+
+        'guard' => 'admin',
+
+        'guards' => [
+            'admin' => [
+                'driver'   => 'session',
+                'provider' => 'admin',
+            ],
+        ],
+
+        // Add "remember me" to login form
+        'remember' => true,
+
+        // Redirect to the specified URI when user is not authorized.
+        'redirect_to' => 'auth/login',
+
+        // The URIs that should be excluded from authorization.
+        'excepts' => [
+            'auth/login',
+            'auth/logout',
+            '_handle_action_',
+        ],
+    ],
 ];

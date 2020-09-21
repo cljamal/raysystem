@@ -50,6 +50,7 @@ class InstallCommand extends Command{
 
         // Create base Controller & Model
         $this->makeFile('Modules/Base/Controllers/BaseController.php', __DIR__ . '/install_stubs/BaseController.stub');
+        $this->makeFile('Modules/Base/Controllers/AuthController.php', __DIR__ . '/install_stubs/AuthController.stub');
         $this->makeFile('Modules/Base/Models/BaseModel.php', __DIR__ . '/install_stubs/BaseModel.stub');
     }
 
