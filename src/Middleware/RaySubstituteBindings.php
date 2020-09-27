@@ -1,9 +1,9 @@
 <?php
 namespace CLJAMAL\RaySystem\Middleware;
 
-use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
+use Illuminate\Routing\Middleware\SubstituteBindings as Middleware;
 
-class RayEncryptCookies extends Middleware
+class RaySubstituteBindings extends Middleware
 {
     /**
      * The names of the cookies that should not be encrypted.

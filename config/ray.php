@@ -6,7 +6,7 @@ use App\Ray\Modules\Base\Controllers\AuthController;
 return [
     'basedir' => app_path('Ray'),
     'routes' => [
-        'middleware' =>['ray'],
+        'middleware' => ['ray'],
         'admin-prefix' => 'admin',
         'root-name' => 'ray',
     ],
@@ -17,12 +17,19 @@ return [
     'auth' => [
         'controller' => AuthController::class,
 
-        'guard' => 'admin',
+        'guard' => 'ray',
 
         'guards' => [
-            'admin' => [
+            'ray' => [
                 'driver'   => 'session',
-                'provider' => 'admin',
+                'provider' => 'ray',
+            ],
+        ],
+
+        'providers' => [
+            'ray' => [
+                'driver' => 'eloquent',
+                'model'  => CLJAMAL\RaySystem\Models\UserModel::class,
             ],
         ],
 

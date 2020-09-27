@@ -13,10 +13,13 @@ abstract class CoreController extends Controller{
 
     public function __construct()
     {
-        $this->template  = config('ray.admin.template');
+        $this->template  = 'ray::'.config('ray.admin.template');
 
-        if ( !empty(request()->route()->getName()) )
+        if ( request()->route() && !empty(request()->route()->getName()) ){
+
             $this->page_name = (string) Str::of( request()->route()->getName() )->replace('.', '--')->kebab();
+
+        }
 
         view()->share([
             'template' => $this->template,
