@@ -12,6 +12,9 @@ const mix = require('laravel-mix');
  */
 
 mix
+    .js('resources/assets-src/js/top.js', 'resources/assets/js')
     .js('resources/assets-src/js/ray.js', 'resources/assets/js')
+    .js('resources/assets-src/js/bottom.js', 'resources/assets/js')
+
     .sass('resources/assets-src/sass/ray.scss', 'resources/assets/css')
     .copyDirectory('resources/assets-src/img', 'resources/assets/img');

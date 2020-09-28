@@ -13,7 +13,7 @@ abstract class CoreController extends Controller{
 
     public function __construct()
     {
-        $this->template  = 'ray::'.config('ray.admin.template');
+        $this->template  = 'ray::'.config('ray.admin.template') . '.';
 
         if ( request()->route() && !empty(request()->route()->getName()) ){
 

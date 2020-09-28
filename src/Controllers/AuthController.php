@@ -11,9 +11,8 @@ class AuthController extends CoreController
     public function pageLogin()
     {
         if ( !Ray::check() ){
-            return view( $this->template . '.login');
+            return view( $this->template . 'login');
         }
-        dd(Ray::user());
     }
 
     public function postLogin( Request $request ){

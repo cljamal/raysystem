@@ -9,7 +9,7 @@ class DashController extends CoreController
 
     public function index()
     {
-        return view( $this->template . '.login' );
+        return view( $this->template . '.dashboard' );
     }
 
     public function postLogin( Request $request ){

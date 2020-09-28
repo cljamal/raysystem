@@ -6,12 +6,17 @@
     <title>@stack('title')</title>
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('ray/css/ray.css' ) }}" rel="stylesheet">
-    <script src="{{ asset('ray/js/ray.js') }}" defer></script>
+    <script src="{{ asset('ray/js/top.js') }}"></script>
     @stack('header')
 </head>
 <body id="{{ $page_name }}" class="{{ $body_class }}">
-    @yield("content")
+
+    <div id="app">
+        @yield("content")
+    </div>
 
     @stack('footer')
+    <script src="{{ asset('ray/js/ray.js') }}"></script>
+    <script src="{{ asset('ray/js/bottom.js') }}"></script>
 </body>
 </html>

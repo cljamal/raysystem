@@ -1,4 +1,4 @@
-@extends( $template . '.layouts.app')
+@extends( $template . 'layouts.app')
 
 @section('content')
     <div class="container mt-5">
