@@ -23,9 +23,6 @@
         "axios": "^0.20.0",
         "bootstrap": "^4.5.2",
         "jquery": "^3.5.1",
-        "popper.js": "^1.16.1",
-        "vue": "^2.6.12",
-        "vue-router": "^3.4.3",
-        "vuetify": "^2.3.10"
+        "popper.js": "^1.16.1"
     }
 }

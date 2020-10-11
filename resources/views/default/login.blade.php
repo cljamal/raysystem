@@ -1,31 +1,31 @@
 @extends( $template . 'layouts.app')
 
+@push('title', 'Страница авторизации')
+
 @section('content')
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-3 mx-auto">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{{ route('ray.post-login') }}" method="post">
-                            @csrf @method('post')
-                            <div class="form-group">
-                                <label for="login-fl">
-                                    Login
-                                </label>
-                                <input id="login-fl" type="text" name="login">
-                            </div>
-                            <div class="form-group">
-                                <label for="password-fl">
-                                    Password
-                                </label>
-                                <input id="password-fl" type="text" name="password">
-                            </div>
-                            <div>
-                                <button type="submit">
-                                    OK
-                                </button>
-                            </div>
-                        </form>
+    <div class="bg-primary">
+        <div class="container">
+            <div class="row vh-100 d-flex align-items-center">
+                <div class="col-6 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1">
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

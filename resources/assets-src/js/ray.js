@@ -1,5 +1,12 @@
-import Vue from 'vue'
-import vuetify from './vue/plugins/vuetify';
-import '@mdi/font/css/materialdesignicons.min.css';
+try{
+    //Utils
+    window._ = require('lodash');
 
-new Vue({ mixins: mixin, vuetify }).$mount('#app');
+    // Bootstrap
+    window.jquery = window.$ = require('jquery');
+    require('bootstrap');
+
+    //Axios
+    window.axios = require('axios');
+    window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+} catch (e) {}

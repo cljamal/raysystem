@@ -3,6 +3,7 @@ namespace CLJAMAL\RaySystem\Controllers;
 
 use CLJAMAL\RaySystem\Facades\Ray;
 use Illuminate\Http\Request;
+use CLJAMAL\RaySystem\Classes\Form;
 
 class AuthController extends CoreController
 {
@@ -10,6 +11,10 @@ class AuthController extends CoreController
 
     public function pageLogin()
     {
+        $form = new Form();
+
+        dd('test');
+
         if ( !Ray::check() ){
             return view( $this->template . 'login');
         }
